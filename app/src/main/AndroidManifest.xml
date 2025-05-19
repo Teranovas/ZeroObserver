@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ZeroObserver"
         tools:targetApi="31">
         <activity
+            android:name=".CountryDetailScreen"
+            android:exported="false" />
+        <activity
+            android:name=".WorldMapScreen"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

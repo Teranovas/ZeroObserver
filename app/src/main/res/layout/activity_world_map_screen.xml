@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_world_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_world_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/world_map_placeholder" />
+
+    <LinearLayout
+        android:id="@+id/panel_country_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:background="#CCFFFFFF"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_leader_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leader Name" />
+
+        <ProgressBar
+            android:id="@+id/progress_support"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal" />
+
+        <ProgressBar
+            android:id="@+id/progress_crisis"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal" />
+
+        <Button
+            android:id="@+id/btn_edit_memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Memory" />
+
+        <Button
+            android:id="@+id/btn_global_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dashboard" />
+    </LinearLayout>
+</RelativeLayout>
