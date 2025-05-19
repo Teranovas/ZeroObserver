@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ZeroObserver"
         tools:targetApi="31">
         <activity
+            android:name=".GlobalCrisisDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".MemoryEditScreen"
+            android:exported="false" />
+        <activity
             android:name=".CountryDetailScreen"
             android:exported="false" />
         <activity
