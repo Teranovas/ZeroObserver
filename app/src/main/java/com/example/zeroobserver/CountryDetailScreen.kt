@@ -16,6 +16,10 @@ class CountryDetailScreen : AppCompatActivity() {
         val inputMessage = findViewById<EditText>(R.id.input_message)
         val btnSend = findViewById<Button>(R.id.btn_send)
 
+        val countryName = intent.getStringExtra("countryName") ?: "Unknown"
+        val title = findViewById<TextView>(R.id.text_country_title)
+        title.text = "Country: $countryName"
+
         btnSend.setOnClickListener {
             val message = inputMessage.text.toString()
             if (message.isNotBlank()) {

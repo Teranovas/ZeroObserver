@@ -25,6 +25,8 @@ class WorldMapScreen : AppCompatActivity() {
 
         mapImage.setOnClickListener {
             startActivity(Intent(this, CountryDetailScreen::class.java))
+            intent.putExtra("countryName", "USA") // 임시 예시
+            startActivity(intent)
         }
     }
 }
