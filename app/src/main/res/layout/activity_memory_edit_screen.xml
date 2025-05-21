@@ -19,4 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <EditText
+        android:id="@+id/input_memory_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit selected memory..."
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_save_memory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Memory"
+        android:visibility="gone" />
 </LinearLayout>

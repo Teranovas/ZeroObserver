@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ZeroObserver"
         tools:targetApi="31">
         <activity
+            android:name=".EndingReportActivity"
+            android:exported="false" />
+        <activity
             android:name=".GlobalCrisisDashboard"
             android:exported="false" />
         <activity
