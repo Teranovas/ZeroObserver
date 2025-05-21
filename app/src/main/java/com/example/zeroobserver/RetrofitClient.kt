@@ -1,5 +1,11 @@
 package com.example.zeroobserver
 
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 object RetrofitClient {
     private const val BASE_URL = "https://api.openai.com/"
 
@@ -14,8 +20,7 @@ object RetrofitClient {
         .addInterceptor(authInterceptor)
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
-        })
-        .build()
+        }).build()
 
     val api: GPTApiService = Retrofit.Builder()
         .baseUrl(BASE_URL)
