@@ -1,22 +1,22 @@
 package com.example.zeroobserver
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class CountryDetailScreen : AppCompatActivity() {
 
     private lateinit var chatContainer: LinearLayout
     private lateinit var inputMessage: EditText
     private lateinit var btnSend: Button
+    private lateinit var loadingIndicator: ProgressBar
+
+    private val viewModel: ChatViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_detail_screen)
@@ -27,42 +27,45 @@ class CountryDetailScreen : AppCompatActivity() {
         chatContainer = findViewById(R.id.chat_container)
         inputMessage = findViewById(R.id.input_message)
         btnSend = findViewById(R.id.btn_send)
+        loadingIndicator = findViewById(R.id.loading_spinner)
+
+        observeViewModel()
 
         btnSend.setOnClickListener {
             val userMessage = inputMessage.text.toString().trim()
             if (userMessage.isNotEmpty()) {
-                addChatBubble("You: $userMessage")
                 inputMessage.text.clear()
-                sendToGPT(userMessage)
+                viewModel.sendMessage(userMessage) { report ->
+                    val intent = Intent(this, EndingReportActivity::class.java)
+                    intent.putExtra("reportResult", report)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
-    }
-    private fun addChatBubble(text: String) {
-        val bubble = TextView(this)
-        bubble.text = text
-        bubble.setPadding(16, 8, 16, 8)
-        bubble.textSize = 16f
-        chatContainer.addView(bubble)
     }
 
-    private fun sendToGPT(message: String) {
+    private fun observeViewModel() {
         lifecycleScope.launch {
-            try {
-                val request = GPTRequest(
-                    messages = listOf(
-                        GPTMessage("system", "You are the leader of the nation."),
-                        GPTMessage("user", message)
-                    )
-                )
-                val response = withContext(Dispatchers.IO) {
-                    RetrofitClient.api.getGPTResponse(request)
-                }
-                val reply = response.choices.firstOrNull()?.message?.content ?: "No response"
-                addChatBubble("Leader: $reply")
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(this@CountryDetailScreen, "GPT 응답 실패", Toast.LENGTH_SHORT).show()
+            viewModel.chatMessages.collectLatest { messages ->
+                chatContainer.removeAllViews()
+                messages.forEach { addChatBubble(it) }
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.isLoading.collectLatest { isLoading ->
+                loadingIndicator.visibility = if (isLoading) ProgressBar.VISIBLE else ProgressBar.GONE
+            }
+        }
+    }
+
+    private fun addChatBubble(text: String) {
+        val bubble = TextView(this).apply {
+            this.text = text
+            setPadding(16, 8, 16, 8)
+            textSize = 16f
+        }
+        chatContainer.addView(bubble)
     }
 }
