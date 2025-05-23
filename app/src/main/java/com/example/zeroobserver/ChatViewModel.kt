@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+import com.example.zeroobserver.GptRepository
+
+
 class ChatViewModel {
 
     private val _chatMessages = MutableStateFlow<List<String>>(emptyList())
