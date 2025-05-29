@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ZeroObserver</string>
+    <string name="country_title">Country: %1$s</string>
 </resources>

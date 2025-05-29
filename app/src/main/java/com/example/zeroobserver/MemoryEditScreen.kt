@@ -1,13 +1,9 @@
 package com.example.zeroobserver
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +22,7 @@ class MemoryEditScreen : AppCompatActivity() {
     )
 
     private var selectedIndex = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memory_edit_screen)
@@ -50,6 +47,7 @@ class MemoryEditScreen : AppCompatActivity() {
                 memoryLogs[selectedIndex] = newText
                 adapter.notifyDataSetChanged()
                 sendMemoryToGPT(newText)
+                MemoryStorage.save(this@MemoryEditScreen, newText)  // 저장 추가
                 inputEdit.text.clear()
                 inputEdit.visibility = View.GONE
                 btnSave.visibility = View.GONE

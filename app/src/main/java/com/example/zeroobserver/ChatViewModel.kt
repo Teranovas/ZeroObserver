@@ -1,5 +1,6 @@
 package com.example.zeroobserver
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,6 +49,13 @@ class ChatViewModel : ViewModel() {
                 val report = gptRepository.getReportFromHistory(history)
                 onFinish(report)
             }
+        }
+    }
+
+    fun setMemory(context: Context) {
+        val memory = MemoryStorage.load(context)
+        if (memory.isNotBlank()) {
+            history.add(0, "System memory: $memory")
         }
     }
 }
