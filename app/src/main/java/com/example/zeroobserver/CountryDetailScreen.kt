@@ -3,6 +3,7 @@ package com.example.zeroobserver
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collectLatest
@@ -21,6 +22,7 @@ class CountryDetailScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_detail_screen)
 
+        // UI 연결
         val countryName = intent.getStringExtra("countryName") ?: "Unknown"
         findViewById<TextView>(R.id.text_country_title).text = "Country: $countryName"
 
@@ -29,13 +31,16 @@ class CountryDetailScreen : AppCompatActivity() {
         btnSend = findViewById(R.id.btn_send)
         loadingIndicator = findViewById(R.id.loading_spinner)
 
+        // ViewModel 상태 관찰
         observeViewModel()
 
+        // 전송 버튼 클릭 시
         btnSend.setOnClickListener {
             val userMessage = inputMessage.text.toString().trim()
             if (userMessage.isNotEmpty()) {
                 inputMessage.text.clear()
                 viewModel.sendMessage(userMessage) { report ->
+                    // 5턴 후 보고서 생성 시 화면 이동
                     val intent = Intent(this, EndingReportActivity::class.java)
                     intent.putExtra("reportResult", report)
                     startActivity(intent)

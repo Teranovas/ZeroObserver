@@ -1,14 +1,16 @@
 package com.example.zeroobserver
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-import com.example.zeroobserver.GptRepository
+class ChatViewModel : ViewModel() {
 
-
-class ChatViewModel {
+    private val gptRepository = GptRepository()
 
     private val _chatMessages = MutableStateFlow<List<String>>(emptyList())
     val chatMessages: StateFlow<List<String>> = _chatMessages.asStateFlow()
