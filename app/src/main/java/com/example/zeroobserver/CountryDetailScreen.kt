@@ -34,7 +34,11 @@ class CountryDetailScreen : AppCompatActivity() {
 
         viewModel.setMemory(this)  // 🔥 메모리 반영
 
+        viewModel.loadProgress(this, countryName)
+
         observeViewModel()
+
+
 
         btnSend.setOnClickListener {
             val userMessage = inputMessage.text.toString().trim()

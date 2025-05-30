@@ -58,4 +58,16 @@ class ChatViewModel : ViewModel() {
             history.add(0, "System memory: $memory")
         }
     }
+
+    fun saveProgress(context: Context, country: String) {
+        GameProgressStorage.saveProgress(context, country, history, turnCount)
+    }
+
+    fun loadProgress(context: Context, country: String) {
+        val (savedHistory, savedTurn) = GameProgressStorage.loadProgress(context, country)
+        history.clear()
+        history.addAll(savedHistory)
+        turnCount = savedTurn
+        _chatMessages.value = savedHistory // 화면에도 표시
+    }
 }
