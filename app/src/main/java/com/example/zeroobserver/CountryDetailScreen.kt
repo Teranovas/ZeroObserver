@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -16,6 +17,10 @@ class CountryDetailScreen : AppCompatActivity() {
     private lateinit var inputMessage: EditText
     private lateinit var btnSend: Button
     private lateinit var loadingIndicator: ProgressBar
+
+
+    private lateinit var chatRecycler: RecyclerView
+    private lateinit var adapter: ChatAdapter
 
     private val viewModel: ChatViewModel by viewModels()
 
