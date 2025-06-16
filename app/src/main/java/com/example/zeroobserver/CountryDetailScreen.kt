@@ -32,7 +32,10 @@ class CountryDetailScreen : AppCompatActivity() {
         findViewById<TextView>(R.id.text_country_title).text =
             getString(R.string.country_title, countryName)
 
-        chatContainer = findViewById(R.id.chat_container)
+        chatRecycler = findViewById(R.id.chat_recycler)
+        adapter = ChatAdapter(viewModel.chatMessages.value)
+        chatRecycler.adapter = adapter
+
         inputMessage = findViewById(R.id.input_message)
         btnSend = findViewById(R.id.btn_send)
         loadingIndicator = findViewById(R.id.loading_spinner)
@@ -62,8 +65,9 @@ class CountryDetailScreen : AppCompatActivity() {
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.chatMessages.collectLatest { messages ->
-                chatContainer.removeAllViews()
-                messages.forEach { addChatBubble(it) }
+                adapter = ChatAdapter(messages)
+                chatRecycler.adapter = adapter
+                chatRecycler.scrollToPosition(messages.size - 1)
             }
         }
 
