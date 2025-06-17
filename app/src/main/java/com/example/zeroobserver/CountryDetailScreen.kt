@@ -29,6 +29,10 @@ class CountryDetailScreen : AppCompatActivity() {
         setContentView(R.layout.activity_country_detail_screen)
 
         val countryName = intent.getStringExtra("countryName") ?: "Unknown"
+        val personality = intent.getStringExtra("leaderPersonality") ?: "neutral" // 🔥 성격 인텐트 받기
+
+        viewModel.setPersonality(personality) // 🔥 ViewModel에 성격 전달
+
         findViewById<TextView>(R.id.text_country_title).text =
             getString(R.string.country_title, countryName)
 
@@ -44,9 +48,6 @@ class CountryDetailScreen : AppCompatActivity() {
 
         viewModel.loadProgress(this, countryName)
 
-        val personality = intent.getStringExtra("leaderPersonality") ?: "neutral"
-
-        viewModel.setPersonality(personality)
 
         observeViewModel()
 

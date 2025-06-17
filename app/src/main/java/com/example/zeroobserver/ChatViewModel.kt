@@ -23,6 +23,13 @@ class ChatViewModel : ViewModel() {
     private val maxTurns = 5
     private val history = mutableListOf<String>()
 
+
+    private var personality: String = "neutral" // 🔥 성격 추가
+
+    fun setPersonality(value: String) { // 🔥 성격 설정 함수
+        personality = value
+    }
+
     fun sendMessage(userInput: String, onFinish: (String) -> Unit) {
         val userLine = "You: $userInput"
         _chatMessages.update { it + userLine }
