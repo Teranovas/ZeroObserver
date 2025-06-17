@@ -44,6 +44,10 @@ class CountryDetailScreen : AppCompatActivity() {
 
         viewModel.loadProgress(this, countryName)
 
+        val personality = intent.getStringExtra("leaderPersonality") ?: "neutral"
+
+        viewModel.setPersonality(personality)
+
         observeViewModel()
 
 
