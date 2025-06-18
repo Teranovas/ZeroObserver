@@ -9,14 +9,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EndingReportActivity : AppCompatActivity() {
-    private lateinit var resultView: TextView
+//    private lateinit var resultView: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ending_report)
 
-        resultView = findViewById(R.id.text_ending_result)
+        val resultView = findViewById<TextView>(R.id.text_ending_result)
+        val report = intent.getStringExtra("reportResult") ?: "No report"
+        resultView.text = report
+
+        val countryName = intent.getStringExtra("countryName") ?: "Unknown"
+        ReportStorage.saveReport(this, countryName, report) // 🔥 저장
 
 
 
