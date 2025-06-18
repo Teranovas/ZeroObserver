@@ -49,5 +49,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dashboard" />
+
+        <Button
+            android:id="@+id/btn_continue_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🇰🇷 Continue Korea (예시)"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/btn_view_reports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📊 View All Reports"
+            android:layout_marginTop="12dp" />
+
     </LinearLayout>
 </RelativeLayout>
