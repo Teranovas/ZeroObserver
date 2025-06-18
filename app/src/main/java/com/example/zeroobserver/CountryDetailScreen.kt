@@ -60,6 +60,7 @@ class CountryDetailScreen : AppCompatActivity() {
                 viewModel.sendMessage(userMessage) { report ->
                     val intent = Intent(this, EndingReportActivity::class.java)
                     intent.putExtra("reportResult", report)
+                    intent.putExtra("countryName", countryName)
                     startActivity(intent)
                     finish()
                 }

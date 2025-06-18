@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ZeroObserver"
         tools:targetApi="31">
         <activity
+            android:name=".CompareReportActivity"
+            android:exported="false" />
+        <activity
             android:name=".LeaderPersonalityActivity"
             android:exported="false" />
         <activity
