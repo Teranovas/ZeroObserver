@@ -24,6 +24,10 @@ class ChatViewModel : ViewModel() {
     private val history = mutableListOf<String>()
 
 
+    private var peacefulScore = 0
+    private var aggressiveScore = 0
+    private var strategicScore = 0
+
     private var personality: String = "neutral" // 🔥 성격 추가
 
     fun setPersonality(value: String) { // 🔥 성격 설정 함수
@@ -34,6 +38,9 @@ class ChatViewModel : ViewModel() {
         val userLine = "You: $userInput"
         _chatMessages.update { it + userLine }
         history.add(userLine)
+
+
+        updatePersonalityByMessage(userInput)
 
         _isLoading.value = true
 
@@ -76,5 +83,25 @@ class ChatViewModel : ViewModel() {
         history.addAll(savedHistory)
         turnCount = savedTurn
         _chatMessages.value = savedHistory // 화면에도 표시
+    }
+
+    private fun updatePersonalityByMessage(message: String) {
+        val lower = message.lowercase()
+        when {
+            listOf("negotiate", "peace", "treaty").any { lower.contains(it) } -> peacefulScore++
+            listOf("strike", "attack", "destroy").any { lower.contains(it) } -> aggressiveScore++
+            listOf("leverage", "influence", "plan", "tactic").any { lower.contains(it) } -> strategicScore++
+        }
+
+        // 가장 높은 점수의 성격으로 전환
+        val max = listOf(
+            "peaceful" to peacefulScore,
+            "aggressive" to aggressiveScore,
+            "strategic" to strategicScore
+        ).maxByOrNull { it.second }
+
+        if (max != null) {
+            personality = max.first
+        }
     }
 }
