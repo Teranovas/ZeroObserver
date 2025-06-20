@@ -1,3 +1,4 @@
+
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -5,6 +6,7 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 val localProperties = Properties().apply {
@@ -79,6 +81,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
     implementation ("androidx.activity:activity-ktx:1.7.2")
+
+    implementation ("androidx.room:room-runtime:2.7.2")
+    kapt("androidx.room:room-compiler:2.7.2")
+    implementation ("androidx.room:room-ktx:2.7.2")
+
 
 
 }
