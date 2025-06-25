@@ -11,3 +11,5 @@ data class NationProgress(
     val history: String, // JSON 문자열
     val report: String
 )
+
+annotation class Entity(val tableName: String)
