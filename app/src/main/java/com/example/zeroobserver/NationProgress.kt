@@ -12,4 +12,6 @@ data class NationProgress(
     val report: String
 )
 
+annotation class PrimaryKey
+
 annotation class Entity(val tableName: String)
