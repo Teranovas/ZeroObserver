@@ -21,3 +21,5 @@ interface NationProgressDao {
     @Delete
     suspend fun delete(progress: NationProgress)
 }
+
+annotation class Dao
