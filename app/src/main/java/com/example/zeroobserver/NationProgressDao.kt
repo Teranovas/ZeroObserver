@@ -1,11 +1,11 @@
 package com.example.zeroobserver
 
 import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Insert
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import retrofit2.http.Query
+import androidx.room.Query
+
 
 @Dao
 interface NationProgressDao {
@@ -21,5 +21,3 @@ interface NationProgressDao {
     @Delete
     suspend fun delete(progress: NationProgress)
 }
-
-annotation class Dao
