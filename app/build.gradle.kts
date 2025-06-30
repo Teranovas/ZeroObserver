@@ -82,9 +82,9 @@ dependencies {
 
     implementation ("androidx.activity:activity-ktx:1.7.2")
 
-    implementation ("androidx.room:room-runtime:2.7.2")
-    kapt("androidx.room:room-compiler:2.7.2")
-    implementation ("androidx.room:room-ktx:2.7.2")
+    implementation("androidx.room:room-runtime:2.6.1") // ← 안정적 버전
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 
 
 
