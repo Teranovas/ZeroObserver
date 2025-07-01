@@ -3,6 +3,7 @@ package com.example.zeroobserver
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.zeroobserver.ReportStorage
 
 class LeaderReportViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = GptRepository()

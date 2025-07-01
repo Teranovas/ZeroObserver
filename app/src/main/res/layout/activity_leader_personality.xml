@@ -39,4 +39,18 @@
         android:layout_height="wrap_content"
         android:text="Start Simulation"
         android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/btn_generate_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate Report" />
+
+    <TextView
+        android:id="@+id/tv_leader_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Report will appear here"
+        android:padding="16dp"
+        android:textSize="16sp" />
 </LinearLayout>
